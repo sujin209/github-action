@@ -1,5 +1,4 @@
-name: Run test  # Github Actions 탭에 표시될 이름 
-
+name: test  # Github Actions 탭에 표시될 이름 
 
 on: # 언제 실행될지 
   push:
