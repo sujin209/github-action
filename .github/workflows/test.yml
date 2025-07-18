@@ -1,26 +1,28 @@
-name : Run test # github actions 탭에 표시될 이름
+name: Run test  # Github Actions 탭에 표시될 이름 
 
-on : # 언제실행될지
-  push : 
-    branches : [main] # 메인브랜치에 푸쉬될때실행됨
-  pull_request : 
 
-# 작업정의
-jobs : 
-  test : 
-    runs-on : ubuntu-latest #우분투최신버전(가상머신)
-    steps : 
-      - name : Checkout code
-        user : actions/checkout@v4 # 있어야 npm install 이 가능해짐
+on: # 언제 실행될지 
+  push:
+    branches: [main] # main 브랜치에 push 될 때 실행됨.
+  pull_request:
 
-      - name : Setup Node
-        uses : actions/setup-node@v4
-        with : 
-          node-version : 18 # npx, npm 사용할 수 있게됨
-      
-      - name : Install dependencies # 패키지설치(의존성)
-        run : npm ci # npm install 도 동작함
+# 작업 정의 
+jobs:
+  test:
+    runs-on: ubuntu-latest # 우분투 최신버전 (가상머신)
 
-      - name : Run tests
-        run : npm test # package.json에서 test 스크립트 실행
-        # Jest 동작구간
+    steps: 
+      - name: Checkout code
+        uses: actions/checkout@v4 # npm install이 가능해짐 
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18 # npx, npm 
+
+      - name: Install dependencies # 패키지 설치 (의존성)
+        run: npm ci
+
+      - name: Run tests
+        run: npm test # package.json에서 test 스크립트 실행
+        # Jest 동작 구간 
